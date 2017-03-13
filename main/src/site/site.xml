@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project name="${project.name}">
+    <skin>
+        <!-- See http://repo1.maven.org/maven2/org/apache/maven/skins/ for an overview of available skins -->
+        <groupId>org.apache.maven.skins</groupId>
+        <artifactId>maven-fluido-skin</artifactId>
+        <version>1.6</version>
+    </skin>
+    <custom>
+        <fluidoSkin>
+            <topBarEnabled>false</topBarEnabled>
+            <topBarContainerStyle>width: 90%;</topBarContainerStyle>
+            <sideBarEnabled>true</sideBarEnabled>
+            <leftColumnClass>span3</leftColumnClass>
+            <bodyColumnClass>span9</bodyColumnClass>
+            <sourceLineNumbersEnabled>true</sourceLineNumbersEnabled>
+        </fluidoSkin>
+    </custom>
+    <bannerLeft>
+        <name>Red Star Development</name>
+        <!--        <src>http://www.bkwi.nl/fileadmin/templates/v2010/images/Logo.png</src>
+        <href>http://www.bkwi.nl</href>-->
+    </bannerLeft>
+    <publishDate position="left" />
+    <version position="left" />
+    <body>
+        <menu name="Documentation">
+            <item name="Goals" href="index.html" />
+            <item name="Architecture" href="architecture.html" />
+        </menu>
+        <menu ref="parent"/>
+    </body>
+</project>

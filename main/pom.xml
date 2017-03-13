@@ -1,0 +1,114 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>info.rsdev.boombox</groupId>
+        <artifactId>parent-pom</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+    <artifactId>main</artifactId>
+    <packaging>jar</packaging>
+    <name>main</name>
+    <description>Audio player that also manages your music library</description>
+
+    <developers>
+        <developer>
+            <name>Dave Schoorl</name>
+            <email>dave.schoorl@redstardevelopment.nl</email>
+            <timezone>+1</timezone>
+            <organization>Red Star Development</organization>
+            <organizationUrl>http://www.redstardevelopment.nl</organizationUrl>
+            <roles>
+                <role>Architect</role>
+                <role>Developer</role>
+            </roles>
+        </developer>
+    </developers>
+
+    <organization>
+        <name>Red Star Development</name>
+        <url>http://www.redstardevelopment.nl</url>
+    </organization>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.googlecode.soundlibs</groupId>
+            <artifactId>tritonus-share</artifactId>
+            <version>0.3.7.4</version>
+        </dependency>
+        <dependency>
+            <groupId>com.googlecode.soundlibs</groupId>
+            <artifactId>jlayer</artifactId>
+            <version>1.0.1.4</version>
+        </dependency>
+        <dependency>
+            <groupId>com.googlecode.soundlibs</groupId>
+            <artifactId>mp3spi</artifactId>
+            <version>1.9.5.4</version>
+        </dependency>
+        <dependency>
+            <groupId>com.googlecode.soundlibs</groupId>
+            <artifactId>jorbis</artifactId>
+            <version>0.0.17.4</version>
+        </dependency>
+        <dependency>
+            <groupId>com.googlecode.soundlibs</groupId>
+            <artifactId>vorbisspi</artifactId>
+            <version>1.0.3.3</version>
+        </dependency>
+        <!--		<dependency>
+                <groupId>jotify</groupId>
+                <artifactId>jotify</artifactId>
+                <version>0.2.0</version>
+        </dependency>-->
+		
+        <!-- 		<dependency> -->
+        <!-- 		    <groupId>net.sf.javamusictag</groupId> -->
+        <!-- 		    <artifactId>jid3lib</artifactId> -->
+        <!-- 		    <version>0.5.4</version> -->
+        <!-- 		</dependency> -->
+        <dependency>
+            <groupId>org</groupId>
+            <artifactId>jaudiotagger</artifactId>
+            <version>2.0.3</version>
+        </dependency>
+        <!-- this one is not in a public maven repository, either build from source locally 
+        or store artifacts in your own repository manager -->
+        <!-- 		<dependency> -->
+        <!-- 			<groupId>jflac</groupId> -->
+        <!-- 			<artifactId>jflac-codec</artifactId> -->
+        <!-- 			<version>1.4.0-SNAPSHOT</version> -->
+        <!-- 		</dependency> -->
+
+        <!-- try to make logging work with JRE's logging (as of 1.4) -->
+        <!-- 		<dependency> -->
+        <!-- 			<groupId>org.slf4j</groupId> -->
+        <!-- 			<artifactId>slf4j-api</artifactId> -->
+        <!-- 			<version>1.7.5</version> -->
+        <!-- 		</dependency> -->
+        <!-- 		<dependency> -->
+        <!-- 			<groupId>org.slf4j</groupId> -->
+        <!-- 			<artifactId>slf4j-log4j12</artifactId> -->
+        <!-- 			<version>1.7.5</version> -->
+        <!-- 		</dependency> -->
+        <!-- 		<dependency> -->
+        <!-- 			<groupId>log4j</groupId> -->
+        <!-- 			<artifactId>log4j</artifactId> -->
+        <!-- 			<version>1.2.17</version> -->
+        <!-- 		</dependency> -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-all</artifactId>
+            <version>1.9.5</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+</project>
