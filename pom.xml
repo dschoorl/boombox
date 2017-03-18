@@ -6,10 +6,13 @@
     <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>boombox</name>
-    <description>Audio player that also manages your music library</description>
+    <description>Aggregator project for the multi-module Boombox application,
+        an open source, cross platform audio player and music collection manager
+    </description>
 
     <modules>
         <module>main</module>
+        <module>datalayer</module>
     </modules>
 
     <developers>
@@ -30,21 +33,81 @@
         <name>Red Star Development</name>
         <url>http://www.redstardevelopment.nl</url>
     </organization>
-
+    
+    <properties>
+        <plugin-clean-version>3.0.0</plugin-clean-version>
+        <plugin-compiler-version>3.6.1</plugin-compiler-version>
+        <plugin-install-version>2.5.2</plugin-install-version>
+        <plugin-jar-version>3.0.2</plugin-jar-version>
+        <plugin-javadoc-version>2.10.4</plugin-javadoc-version>
+        <plugin-resources-version>3.0.2</plugin-resources-version>
+        <plugin-site-version>3.6</plugin-site-version>
+        <plugin-surefire-version>2.19.1</plugin-surefire-version>
+        <plugin-toolchains-version>1.1</plugin-toolchains-version>
+    </properties>
+    
     <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <artifactId>maven-clean-plugin</artifactId>
+                    <version>${plugin-clean-version}</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-install-plugin</artifactId>
+                    <version>${plugin-install-version}</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-jar-plugin</artifactId>
+                    <version>${plugin-jar-version}</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-javadoc-plugin</artifactId>
+                    <version>${plugin-javadoc-version}</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <version>${plugin-resources-version}</version>
+                </plugin>
+
+                <plugin>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>${plugin-surefire-version}</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
         <plugins>
             <plugin>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.6.1</version>
+                <artifactId>maven-toolchains-plugin</artifactId>
+                <version>${plugin-toolchains-version}</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>toolchain</goal>
+                        </goals>
+                    </execution>
+                </executions>
                 <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
+                    <toolchains>
+                        <jdk>
+                            <version>9</version>
+                        </jdk>
+                    </toolchains>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${plugin-compiler-version}</version>
+                <configuration>
+                    <source>9</source>
+                    <target>9</target>
+                    <release>9</release>
+                    <showDeprecation>true</showDeprecation>
                 </configuration>
             </plugin>
             <plugin>    
-                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-site-plugin</artifactId>
-                <version>3.6</version>
+                <version>${plugin-site-version}</version>
                 <dependencies>
                     <dependency>
                         <groupId>org.apache.maven.doxia</groupId>

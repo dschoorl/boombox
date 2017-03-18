@@ -10,28 +10,14 @@
     <artifactId>main</artifactId>
     <packaging>jar</packaging>
     <name>main</name>
-    <description>Audio player that also manages your music library</description>
-
-    <developers>
-        <developer>
-            <name>Dave Schoorl</name>
-            <email>dave.schoorl@redstardevelopment.nl</email>
-            <timezone>+1</timezone>
-            <organization>Red Star Development</organization>
-            <organizationUrl>http://www.redstardevelopment.nl</organizationUrl>
-            <roles>
-                <role>Architect</role>
-                <role>Developer</role>
-            </roles>
-        </developer>
-    </developers>
-
-    <organization>
-        <name>Red Star Development</name>
-        <url>http://www.redstardevelopment.nl</url>
-    </organization>
+    <description>This project contains the starting point for the BoomBox application</description>
 
     <dependencies>
+        <dependency>
+            <groupId>info.rsdev.boombox</groupId>
+            <artifactId>datalayer</artifactId>
+            <version>${project.version}</version>
+        </dependency>
         <dependency>
             <groupId>com.googlecode.soundlibs</groupId>
             <artifactId>tritonus-share</artifactId>
@@ -110,5 +96,8 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-
+    <properties>
+        <maven.compiler.source>9</maven.compiler.source>
+        <maven.compiler.target>9</maven.compiler.target>
+    </properties>
 </project>
