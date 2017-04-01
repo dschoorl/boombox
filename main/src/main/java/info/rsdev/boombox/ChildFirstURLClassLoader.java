@@ -1,3 +1,18 @@
+/*
+ * Copyright 2017 Red Star Development.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package info.rsdev.boombox;
 
 import info.rsdev.boombox.domain.Factory;
@@ -26,48 +41,48 @@ public class ChildFirstURLClassLoader extends URLClassLoader {
     
     public static final Logger logger = Logger.getLogger(Factory.class.getName());
     
-    private ClassLoader system;
+    private ClassLoader systemLoader;
 
     public ChildFirstURLClassLoader(ClassLoader parent) {
         super(getClassPath(), parent);
-        system = getSystemClassLoader();
+        systemLoader = getSystemClassLoader();
     }
 
     @Override
     protected synchronized Class<?> loadClass(String name, boolean resolve)throws ClassNotFoundException {
         // First, check if the class has already been loaded
-        Class<?> c = findLoadedClass(name);
-        if (c == null) {
-            if (system != null) {
+        Class<?> clazz = findLoadedClass(name);
+        if (clazz == null) {
+            if (systemLoader != null) {
                 try {
                     // checking system: jvm classes, endorsed, cmd classpath, etc.
-                    c = system.loadClass(name);
+                    clazz = systemLoader.loadClass(name);
                 }
                 catch (ClassNotFoundException ignored) {
                 }
             }
-            if (c == null) {
+            if (clazz == null) {
                 try {
                     // checking local
-                    c = findClass(name);
+                    clazz = findClass(name);
                 } catch (ClassNotFoundException e) {
                     // checking parent
                     // This call to loadClass may eventually call findClass again, in case the parent doesn't find anything.
-                    c = super.loadClass(name, resolve);
+                    clazz = super.loadClass(name, resolve);
                 }
             }
         }
         if (resolve) {
-            resolveClass(c);
+            resolveClass(clazz);
         }
-        return c;
+        return clazz;
     }
 
     @Override
     public URL getResource(String name) {
         URL url = null;
-        if (system != null) {
-            url = system.getResource(name); 
+        if (systemLoader != null) {
+            url = systemLoader.getResource(name); 
         }
         if (url == null) {
             url = findResource(name);
@@ -85,8 +100,8 @@ public class ChildFirstURLClassLoader extends URLClassLoader {
         * Similar to super, but local resources are enumerated before parent resources
         */
         Enumeration<URL> systemUrls = null;
-        if (system != null) {
-            systemUrls = system.getResources(name);
+        if (systemLoader != null) {
+            systemUrls = systemLoader.getResources(name);
         }
         Enumeration<URL> localUrls = findResources(name);
         Enumeration<URL> parentUrls = null;

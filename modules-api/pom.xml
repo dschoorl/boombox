@@ -7,18 +7,12 @@
         <version>0.0.1-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
-    <artifactId>settings</artifactId>
+    <artifactId>modules-api</artifactId>
     <packaging>jar</packaging>
-    <name>settings</name>
-    <description>This project contains the api for obtaining user settings and configuration</description>
+    <name>modules-api</name>
+    <description>This project contains the api for a module defining it's lifecycle and registring it's abilities</description>
 
     <dependencies>
-        <dependency>
-            <groupId>info.rsdev.boombox</groupId>
-            <artifactId>modules-api</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-            <type>jar</type>
-        </dependency>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>

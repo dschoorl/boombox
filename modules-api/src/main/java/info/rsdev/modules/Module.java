@@ -13,22 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package info.rsdev.boombox;
+package info.rsdev.modules;
 
 /**
- * Class with hardcoded values for my computer. To be made configuration options
- * in the future. This is to make things work quickly.
+ *
+ * @author Dave Schoorl
  */
-public abstract class Hardcoded {
-
-    /**
-     * Do not instantiate this class. It is supposed to hold only constants.
-     */
-    private Hardcoded() {
-    }
-
-    public static final String MUSIC_FOLDER = "/home/dschoorl/Music";
-
-    public static final String USER_EXTENSION_DIR = "/home/dschoorl/.boombox/ext";
-
+public interface Module {
+    
+    String getName();
+    
+    String getVersionString();
+    
+    void init();
+    
 }

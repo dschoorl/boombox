@@ -1,5 +1,17 @@
-/**
- * 
+/*
+ * Copyright 2017 Red Star Development.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package info.rsdev.boombox;
 
@@ -16,71 +28,73 @@ import java.util.prefs.Preferences;
 
 /**
  * This class reads user preferences and bootstraps the application
- *    
+ *
  * @author dschoorl
  */
 public class BoomBox {
-    
+
     private static final String SYSTEM_DATADIR = "";
-    
+
     private final Logger logger;
-	
-	/**
-	 * The location where application data is stored. Can be set/changed in user preferences, but
-	 * needs an application restart in order to take effect. This construction is chose, in order to
-	 * allow overwriting the prefered location through a command line parameter. 
-	 */
-	private final File dataDir;
-	
-	private BoomBox(File dataDir) {
-		if (dataDir == null) {
-			throw new NullPointerException(Messages.getString("BoomBox.0")); //$NON-NLS-1$
-		}
-		this.dataDir = dataDir;
-		logger = Logger.getLogger(BoomBox.class.getName());
-		logger.info(String.format("DataDir=%s", dataDir));
-	}
-	
+
     /**
-	 * @param args
-	 */
-	public static void main(String[] args) throws Exception {
-		
-	    //TODO: check if application runs on Java 7 or newer and also if DerbyDB is available and maybe JavaFX?
-	    
-	    File dataDir = getDataDir(args);
-	    System.setProperty(PrefKeys.DATADIR_KEY, dataDir.getAbsolutePath());
-	    
-	    /* Initialize LogManager to read from logging.properties file in .boombox data directory or else from
-	     * logging.properties from this jar
-	     */
-	    InputStream configStream = null;
-	    File configFile = new File(dataDir, "logging.properties");
-	    if (!configFile.isFile()) {
-	        //read default logging.properties from classpath 
-	        configStream = BoomBox.class.getClassLoader().getResourceAsStream("logging.properties");
-	    }
-	    try {
-	        LogManager.getLogManager().readConfiguration(configStream);
+     * The location where application data is stored. Can be set/changed in user preferences, but
+     * needs an application restart in order to take effect. This construction is chose, in order to
+     * allow overwriting the prefered location through a command line parameter.
+     */
+    private final File dataDir;
+
+    private BoomBox(File dataDir) {
+        if (dataDir == null) {
+            throw new NullPointerException(Messages.getString("BoomBox.0")); //$NON-NLS-1$
+        }
+        this.dataDir = dataDir;
+        logger = Logger.getLogger(BoomBox.class.getName());
+        logger.info(String.format("DataDir=%s", dataDir));
+    }
+
+    /**
+     * @param args
+     */
+    public static void main(String[] args) throws Exception {
+
+        File dataDir = getDataDir(args);
+        System.setProperty(PrefKeys.DATADIR_KEY, dataDir.getAbsolutePath());
+
+        /*
+         * Initialize LogManager to read from logging.properties file in .boombox data directory or
+         * else from logging.properties from this jar
+         */
+        InputStream configStream = null;
+        File configFile = new File(dataDir, "logging.properties");
+        if (!configFile.isFile()) {
+            //read default logging.properties from classpath 
+            configStream = BoomBox.class.getClassLoader().getResourceAsStream("logging.properties");
+        }
+        try {
+            LogManager.getLogManager().readConfiguration(configStream);
         } finally {
             if (configStream != null) {
                 configStream.close();
             }
         }
-	    
-		//create custom classloader so that we can extend the classpath without explicitely setting it
-		ClassLoader parent = Thread.currentThread().getContextClassLoader();
-		ChildFirstURLClassLoader classloader = new ChildFirstURLClassLoader(parent);
-		Thread.currentThread().setContextClassLoader(classloader);
-		
-		BoomBox boomBoxInstance = new BoomBox(dataDir);
-		boomBoxInstance.startGui();
-	}
 
-	private void startGui() {
+        //create custom classloader so that we can extend the classpath without explicitely setting it
+//        ClassLoader parent = Thread.currentThread().getContextClassLoader();
+//        ChildFirstURLClassLoader classloader = new ChildFirstURLClassLoader(parent);
+//        Thread.currentThread().setContextClassLoader(classloader);
+
+        ModuleManager moduleManager = ModuleManager.getInstance();
+        BoomBox boomBoxInstance = new BoomBox(dataDir);
+        boomBoxInstance.startGui();
+    }
+
+    private void startGui() {
         //TODO: offer multiple UI's that can be choosen via Preferences and instantiated dynamically
-        
-        /* Create and display the form */
+
+        /*
+         * Create and display the form
+         */
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 AlternateGUI gui = new AlternateGUI(new FilesystemSource(new File(Hardcoded.MUSIC_FOLDER)));
@@ -88,32 +102,32 @@ public class BoomBox {
                 gui.setVisible(true);
             }
         });
-	}
-	
-	private static File getDataDir(String[] args) {
-		//TODO: provide alternative location of filecache location via commandline options
+    }
 
-		File dataDir = null;
-		Preferences userPrefs = Preferences.userNodeForPackage(BoomBox.class);
-		String preferedPath = userPrefs.get(PrefKeys.DATADIR_KEY, null);
-		if (preferedPath == null) {
-			//TODO: on windows, make it a hidden file
-			dataDir = new File(new File(System.getProperty("user.home")), ".boombox");
-			userPrefs.put("DataDir", dataDir.getAbsolutePath()); //$NON-NLS-1$
-			try {
-				userPrefs.flush();
-			} catch (BackingStoreException e) {
-				throw new RuntimeException(e);
-			}
-		} else {
-			dataDir = new File(preferedPath);
-		}
-		
-		if (!dataDir.isDirectory() && !dataDir.mkdirs()) {
-			throw new RuntimeException(String.format(Messages.getString("BoomBox.7"), dataDir.getAbsolutePath())); //$NON-NLS-1$
-		}
-		
-		return dataDir;
-	}
-	
+    private static File getDataDir(String[] args) {
+        //TODO: provide alternative location of filecache location via commandline options
+
+        File dataDir = null;
+        Preferences userPrefs = Preferences.userNodeForPackage(BoomBox.class);
+        String preferedPath = userPrefs.get(PrefKeys.DATADIR_KEY, null);
+        if (preferedPath == null) {
+            //TODO: on windows, make it a hidden file
+            dataDir = new File(new File(System.getProperty("user.home")), ".boombox");
+            userPrefs.put("DataDir", dataDir.getAbsolutePath()); //$NON-NLS-1$
+            try {
+                userPrefs.flush();
+            } catch (BackingStoreException e) {
+                throw new RuntimeException(e);
+            }
+        } else {
+            dataDir = new File(preferedPath);
+        }
+
+        if (!dataDir.isDirectory() && !dataDir.mkdirs()) {
+            throw new RuntimeException(String.format(Messages.getString("BoomBox.7"), dataDir.getAbsolutePath())); //$NON-NLS-1$
+        }
+
+        return dataDir;
+    }
+
 }

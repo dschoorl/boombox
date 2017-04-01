@@ -15,8 +15,14 @@
     <dependencies>
         <dependency>
             <groupId>info.rsdev.boombox</groupId>
-            <artifactId>datalayer</artifactId>
+            <artifactId>settings</artifactId>
             <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>info.rsdev.boombox</groupId>
+            <artifactId>modules-api</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+            <type>jar</type>
         </dependency>
         <dependency>
             <groupId>com.googlecode.soundlibs</groupId>

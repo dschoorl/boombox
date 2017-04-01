@@ -1,3 +1,4 @@
-module info.rsdev.boombox.datalayer {
-    exports info.rsdev.datalayer.api;
+module info.rsdev.settings {
+    requires info.rsdev.modules;
+    exports info.rsdev.settings.api;
 }

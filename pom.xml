@@ -12,6 +12,7 @@
 
     <modules>
         <module>main</module>
+        <module>modules-api</module>
         <module>datalayer</module>
     </modules>
 
