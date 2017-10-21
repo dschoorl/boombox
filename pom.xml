@@ -37,7 +37,7 @@
     
     <properties>
         <plugin-clean-version>3.0.0</plugin-clean-version>
-        <plugin-compiler-version>3.6.1</plugin-compiler-version>
+        <plugin-compiler-version>3.7.0</plugin-compiler-version>
         <plugin-install-version>2.5.2</plugin-install-version>
         <plugin-jar-version>3.0.2</plugin-jar-version>
         <plugin-javadoc-version>2.10.4</plugin-javadoc-version>
@@ -100,8 +100,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>${plugin-compiler-version}</version>
                 <configuration>
-                    <source>9</source>
-                    <target>9</target>
+<!--                     <source>9</source> -->
+<!--                     <target>9</target> -->
                     <release>9</release>
                     <showDeprecation>true</showDeprecation>
                 </configuration>
