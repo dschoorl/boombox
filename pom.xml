@@ -13,7 +13,8 @@
     <modules>
         <module>main</module>
         <module>modules-api</module>
-        <module>datalayer</module>
+        <!--<module>datalayer</module>-->
+        <module>settings</module>
     </modules>
 
     <developers>
@@ -43,7 +44,7 @@
         <plugin-javadoc-version>2.10.4</plugin-javadoc-version>
         <plugin-resources-version>3.0.2</plugin-resources-version>
         <plugin-site-version>3.6</plugin-site-version>
-        <plugin-surefire-version>2.19.1</plugin-surefire-version>
+        <plugin-surefire-version>2.20.1</plugin-surefire-version>
         <plugin-toolchains-version>1.1</plugin-toolchains-version>
     </properties>
     
@@ -53,6 +54,10 @@
                 <plugin>
                     <artifactId>maven-clean-plugin</artifactId>
                     <version>${plugin-clean-version}</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>${plugin-compiler-version}</version>
                 </plugin>
                 <plugin>
                     <artifactId>maven-install-plugin</artifactId>
@@ -70,17 +75,23 @@
                     <artifactId>maven-resources-plugin</artifactId>
                     <version>${plugin-resources-version}</version>
                 </plugin>
-
+                <plugin>
+                    <artifactId>maven-site-plugin</artifactId>
+                    <version>${plugin-site-version}</version>
+                </plugin>
                 <plugin>
                     <artifactId>maven-surefire-plugin</artifactId>
                     <version>${plugin-surefire-version}</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-toolchains-plugin</artifactId>
+                    <version>${plugin-toolchains-version}</version>
                 </plugin>
             </plugins>
         </pluginManagement>
         <plugins>
             <plugin>
                 <artifactId>maven-toolchains-plugin</artifactId>
-                <version>${plugin-toolchains-version}</version>
                 <executions>
                     <execution>
                         <goals>
@@ -98,17 +109,15 @@
             </plugin>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>${plugin-compiler-version}</version>
                 <configuration>
-<!--                     <source>9</source> -->
-<!--                     <target>9</target> -->
+                     <source>9</source>
+                     <target>9</target>
                     <release>9</release>
                     <showDeprecation>true</showDeprecation>
                 </configuration>
             </plugin>
             <plugin>    
                 <artifactId>maven-site-plugin</artifactId>
-                <version>${plugin-site-version}</version>
                 <dependencies>
                     <dependency>
                         <groupId>org.apache.maven.doxia</groupId>

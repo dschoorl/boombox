@@ -15,7 +15,7 @@
  */
 package info.rsdev.boombox;
 
-import info.rsdev.modules.Module;
+import info.rsdev.modules.api.Module;
 import java.util.ServiceLoader;
 import java.util.logging.Level;
 import java.util.logging.Logger;

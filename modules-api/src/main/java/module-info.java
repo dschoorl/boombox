@@ -1,3 +1,3 @@
-module info.rsdev.modules {
-    exports info.rsdev.modules;
+module info.rsdev.modules.api {
+    exports info.rsdev.modules.api;
 }

@@ -3,7 +3,7 @@ module info.rsdev.boombox.main {
     requires java.desktop;
     requires java.logging;
     requires java.prefs;
-    requires info.rsdev.modules;
+    requires info.rsdev.modules.api;
     requires info.rsdev.settings;
     requires tritonus.share;
     requires jlayer;

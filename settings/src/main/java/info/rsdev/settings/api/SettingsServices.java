@@ -5,7 +5,7 @@
  */
 package info.rsdev.settings.api;
 
-import info.rsdev.modules.Module;
+import info.rsdev.modules.api.Module;
 
 /**
  *

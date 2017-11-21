@@ -12,6 +12,21 @@
     <name>settings</name>
     <description>This project contains the api for obtaining user settings and configuration</description>
 
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifestEntries>
+                            <Automatic-Module-Name>info.rsdev.settings</Automatic-Module-Name>
+                        </manifestEntries>
+                    </archive>
+                </configuration>
+            </plugin>
+
+        </plugins>
+    </build>
     <dependencies>
         <dependency>
             <groupId>info.rsdev.boombox</groupId>

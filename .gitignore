@@ -1,5 +1,19 @@
-# Ignore maven work files
-target/
+# ignore eclipse related files and directories
+.classpath
+.project
+.settings
+bin
+
+# ignore intellij related files and directories
+.idea
+*.iml
+
+# ignore netbeans related files and directories
+/nbproject/
+nb-configuration.xml
+
+# ignore maven related files and directories
+target
 pom.xml.tag
 pom.xml.releaseBackup
 pom.xml.versionsBackup
@@ -9,10 +23,9 @@ dependency-reduced-pom.xml
 buildNumber.properties
 .mvn/timing.properties
 
-# Ignore Netbeans workspace files
-nb-configuration.xml
+# ignore gradle related files and directories
+build
+.gradle
 
-# Ignore Eclipse workspace files and settings
-.settings/
-.project
-.classpath
+# ignore Mac OSX related files and directories
+.DS_Store
