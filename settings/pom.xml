@@ -9,7 +9,7 @@
     </parent>
     <artifactId>settings</artifactId>
     <packaging>jar</packaging>
-    <name>settings</name>
+    <name>boombox-settings</name>
     <description>This project contains the api for obtaining user settings and configuration</description>
 
     <build>

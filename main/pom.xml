@@ -9,7 +9,7 @@
     </parent>
     <artifactId>main</artifactId>
     <packaging>jar</packaging>
-    <name>main</name>
+    <name>boombox-main</name>
     <description>This project contains the starting point for the BoomBox application</description>
 
     <build>
@@ -121,8 +121,4 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-    <properties>
-        <maven.compiler.source>9</maven.compiler.source>
-        <maven.compiler.target>9</maven.compiler.target>
-    </properties>
 </project>

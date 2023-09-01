@@ -9,7 +9,7 @@
     </parent>
     <artifactId>modules-api</artifactId>
     <packaging>jar</packaging>
-    <name>modules-api</name>
+    <name>boombox-modules-api</name>
     <description>This project contains the api for a module defining it's lifecycle and registring it's abilities</description>
 
     <build>
