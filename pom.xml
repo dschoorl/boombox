@@ -88,7 +88,7 @@
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
-					<release>11</release>
+					<release>21</release>
 					<showDeprecation>true</showDeprecation>
 				</configuration>
 			</plugin>
