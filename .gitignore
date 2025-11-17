@@ -29,3 +29,4 @@ build
 
 # ignore Mac OSX related files and directories
 .DS_Store
+.aider*

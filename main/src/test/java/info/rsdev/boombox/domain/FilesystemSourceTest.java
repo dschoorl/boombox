@@ -8,7 +8,7 @@ import java.util.List;
 import org.junit.Ignore;
 import org.junit.Test;
 
-public class FilesystemSourcetest {
+public class FilesystemSourceTest {
     
     @Test @Ignore
     //TODO: this test depends on machine dependent file system content. Remove or change before committing
