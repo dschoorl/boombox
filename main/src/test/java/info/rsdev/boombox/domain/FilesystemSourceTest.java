@@ -1,16 +1,16 @@
 package info.rsdev.boombox.domain;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.File;
 import java.util.List;
 
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 public class FilesystemSourceTest {
     
-    @Test @Ignore
+    @Test @Disabled
     //TODO: this test depends on machine dependent file system content. Remove or change before committing
     public void testGetAllSongs() {
         FilesystemSource source = new FilesystemSource(new File("/home/dschoorl/extern/Muziek"));
