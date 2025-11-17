@@ -10,4 +10,6 @@ module info.rsdev.boombox.main {
     requires jorbis;
     requires vorbisspi;
     requires jaudiotagger;
+    
+    uses info.rsdev.modules.api.Module;
 }
